@@ -77,6 +77,7 @@ Mockups:
 ## Documentation
 
 - [Modes](docs/modes-bg.md)
+- [Beginner guide](docs/beginner-guide-bg.md)
 - [GID / Board Computer integration](docs/gid-bc-integration-bg.md)
 - [Install plan and BOM](docs/install-and-bom-bg.md)
 - [Repair guide findings](docs/repair-guide-findings-bg.md)
