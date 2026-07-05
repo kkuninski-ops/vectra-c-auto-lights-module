@@ -1,4 +1,4 @@
-# Install plan and BOM
+# Монтажен план и BOM
 
 ## Цел
 

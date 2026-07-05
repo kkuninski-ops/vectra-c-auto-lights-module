@@ -1,4 +1,4 @@
-# Repair guide findings
+# Изводи от repair guide
 
 Източник:
 

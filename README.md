@@ -1,70 +1,70 @@
 # Vectra C Auto Lights Module
 
-Concept and firmware scaffold for a low-wiring auto lights module for Opel Vectra C / Signum with retrofit `AUTO` light switch, CD30 MP3 and GID.
+Concept и firmware scaffold за low-wiring auto lights модул за Opel Vectra C / Signum с retrofit `AUTO` копче за фарове, CD30 MP3 и GID.
 
-The goal is to avoid the heavy wiring approach where a custom module directly powers xenon ballasts, fog lamps or sidelights. The safer target architecture is:
+Целта е да се избегне вариантът с много окабеляване, при който custom модул директно захранва xenon ballasts, fog lamps или sidelights. По-безопасната архитектура е:
 
-- keep the factory BCM/UEC/REC in charge of lamp power, diagnostics and protection;
-- operate only when the factory light switch is in `AUTO`;
-- emulate valid manual switch states where possible;
-- use MS-CAN primarily for read-only vehicle state and GID overlay;
-- avoid direct wiring to D1S ballasts and lamp circuits unless measurement proves there is no cleaner option.
+- заводските BCM/UEC/REC да продължат да управляват lamp power, diagnostics и protection;
+- модулът да работи само когато factory light switch е на `AUTO`;
+- когато е възможно, модулът да емулира валидни manual switch states;
+- MS-CAN да се използва първо за read-only vehicle state и GID overlay;
+- да се избягва директно окабеляване към D1S ballasts и lamp circuits, освен ако измерването не докаже, че няма по-чист вариант.
 
-## Current Status
+## Текущ статус
 
-This is not a finished installable product.
+Това не е готов installable product.
 
-It contains:
+Проектът съдържа:
 
-- documented requirements and install plan;
-- C++ state machine for the light modes;
+- описани requirements и install plan;
+- C++ state machine за light modes;
 - C++ `From Start` trip logic;
 - PlatformIO-style ESP32 firmware scaffold;
-- host-side tests for the core logic;
+- host-side tests за core logic;
 - GID overlay concept mockups.
 
-The main missing hardware fact is how the Vectra C light switch encodes its positions on this exact car.
+Основната липсваща hardware информация е как точно Vectra C light switch кодира позициите си на тази конкретна кола.
 
-## Target Car
+## Целева кола
 
-Known target configuration:
+Известна конфигурация:
 
 - Opel Vectra C, 2008;
 - D1S/H1 headlights;
 - CD30 MP3 + GID;
-- retrofit headlight switch with `AUTO`;
-- rain sensor present;
-- light sensor not confirmed;
-- OP-COM DRL v3 currently turns low beams on at ignition in `AUTO`;
-- manual sidelights/low beam positions dim the cluster and CD30/GID correctly;
-- AUTO/DRL behavior does not dim CD30/GID correctly.
+- retrofit headlight switch с `AUTO`;
+- има rain sensor;
+- light sensor не е потвърден;
+- OP-COM DRL v3 в момента пуска low beams още на ignition в `AUTO`;
+- manual sidelights/low beam позициите димират cluster и CD30/GID правилно;
+- AUTO/DRL поведението не димира CD30/GID правилно.
 
-## Desired Behavior
+## Желано поведение
 
 | Mode | Condition | Lights |
 |---|---|---|
 | Welcome | unlock without key | configurable: off / sidelights / low beam / fog / safe combinations |
-| ACC | ignition on, engine not running | configurable, default off or sidelights only |
+| ACC | ignition on, engine not running | configurable, default off или sidelights only |
 | DRL | engine running | low beam xenon + front/rear sidelights |
 | Goodbye | engine stops | configurable: off / sidelights / low beam / fog / safe combinations |
 
-Important requirements:
+Важни изисквания:
 
-- xenon must not turn on at ignition-only/ACC;
-- xenon should turn on right after engine-running detection so the factory level test is visible in the dark;
-- in `AUTO`, the module should emulate manual low beam rather than relying on OP-COM DRL v3;
-- manual switch positions must override the module.
+- xenon не трябва да се включва само на ignition/ACC;
+- xenon трябва да се включва веднага след engine-running detection, за да се вижда factory level test на тъмно;
+- в `AUTO` модулът трябва да емулира manual low beam, вместо да разчита на OP-COM DRL v3;
+- manual switch positions трябва да имат приоритет над модула.
 
-## GID Direction
+## GID посока
 
-The preferred GID integration is not a factory BC tab at first.
+Предпочитаната GID интеграция първо не е factory BC tab.
 
-The realistic target is a GID overlay, similar in principle to projects such as EHU32:
+Реалистичната цел е GID overlay, подобно като идея на проекти като EHU32:
 
-- long press one CD30/BC button to open `Auto Menu`;
-- steering wheel buttons or radio controls navigate the menu, if their CAN frames are confirmed;
-- the module temporarily writes its own screen to GID;
-- factory `BC 1`, `BC 2` and `Timer` remain untouched.
+- long press на един CD30/BC бутон отваря `Auto Menu`;
+- steering wheel buttons или radio controls движат менюто, ако CAN frames се потвърдят;
+- модулът временно рисува собствен екран на GID;
+- заводските `BC 1`, `BC 2` и `Timer` остават недокоснати.
 
 Mockups:
 
@@ -74,18 +74,19 @@ Mockups:
 
 ![Button help](docs/assets/button-help.jpg)
 
-## Documentation
+## Документация
 
-- [Modes](docs/modes-bg.md)
-- [Beginner guide](docs/beginner-guide-bg.md)
+- [Режими](docs/modes-bg.md)
+- [Guide за начинаещи](docs/beginner-guide-bg.md)
 - [GID / Board Computer integration](docs/gid-bc-integration-bg.md)
-- [Install plan and BOM](docs/install-and-bom-bg.md)
-- [Repair guide findings](docs/repair-guide-findings-bg.md)
-- [Measurement checklist](hardware/measurement-checklist-bg.md)
+- [Монтажен план и BOM](docs/install-and-bom-bg.md)
+- [Изводи от repair guide](docs/repair-guide-findings-bg.md)
+- [Чеклист за измерване](hardware/measurement-checklist-bg.md)
+- [Бележки за преглед](docs/review-notes-bg.md)
 
 ## Firmware
 
-The firmware is intentionally split into hardware-independent logic and ESP32 integration placeholders.
+Firmware-ът нарочно е разделен на hardware-independent logic и ESP32 integration placeholders.
 
 Core files:
 
@@ -93,24 +94,24 @@ Core files:
 - `firmware/src/FromStartTrip.*`
 - `firmware/src/main.cpp`
 
-Run host-side tests:
+Пускане на host-side tests:
 
 ```sh
 cd firmware
 make test
 ```
 
-## Safety Notes
+## Бележки за безопасност
 
-This project is for investigation and prototype planning.
+Този проект е за investigation и prototype planning.
 
-Before installing anything in the car:
+Преди да се монтира каквото и да е в колата:
 
-- measure the light switch connector in all positions;
-- confirm OP-COM behavior with `DRL disabled`;
-- confirm MS-CAN access and button frames in read-only mode;
-- validate engine-running detection before using it to command lights;
-- use fused power and automotive input protection;
-- design outputs fail-safe so a dead module cannot leave xenon on or break manual light control.
+- измери light switch connector във всички позиции;
+- потвърди OP-COM поведението с `DRL disabled`;
+- потвърди MS-CAN access и button frames в read-only режим;
+- валидирай engine-running detection преди да се използва за управление на lights;
+- използвай fused power и automotive input protection;
+- проектирай outputs fail-safe, така че повреден модул да не може да остави xenon включен или да счупи manual light control.
 
-Do not directly power D1S ballasts from this module in the first design.
+В първия design не захранвай директно D1S ballasts от този модул.
