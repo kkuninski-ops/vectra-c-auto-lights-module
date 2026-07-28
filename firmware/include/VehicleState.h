@@ -21,6 +21,7 @@ struct VehicleState {
   bool unlockedEvent = false;
   bool lockedEvent = false;
   bool dark = false;
+  bool factoryDimmingActive = false;
 
   uint16_t ambientRaw = 0;
   float batteryVoltage = 0.0f;

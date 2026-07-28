@@ -29,6 +29,11 @@ void applyLightCommand(const LightCommand& command) {
   (void)command;
 }
 
+void updateBleConfigurationService() {
+  // TODO: Expose ModuleConfig over BLE GATT.
+  // The phone app should write settings, not directly remote-control lamps.
+}
+
 }  // namespace
 
 void setup() {
@@ -40,6 +45,7 @@ void loop() {
   const VehicleState state = readVehicleState();
   const LightCommand command = controller.update(state);
   applyLightCommand(command);
+  updateBleConfigurationService();
 
   delay(20);
 }

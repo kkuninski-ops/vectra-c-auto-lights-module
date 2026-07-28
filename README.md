@@ -18,6 +18,7 @@ Concept и firmware scaffold за low-wiring auto lights модул за Opel Ve
 
 - описани requirements и install plan;
 - C++ state machine за light modes;
+- Bluetooth phone app MVP план;
 - C++ `From Start` trip logic;
 - PlatformIO-style ESP32 firmware scaffold;
 - host-side tests за core logic;
@@ -55,9 +56,20 @@ Concept и firmware scaffold за low-wiring auto lights модул за Opel Ve
 - в `AUTO` модулът трябва да емулира manual low beam, вместо да разчита на OP-COM DRL v3;
 - manual switch positions трябва да имат приоритет над модула.
 
+## Текущ MVP фокус
+
+Текущият фокус е:
+
+- управление на фаровете в `AUTO`;
+- правилно dimming/яркост поведение на CD30/GID чрез factory dimming;
+- конфигурация през Bluetooth/BLE приложение от телефона;
+- GID overlay и `From Start` остават future етап.
+
 ## GID посока
 
-Предпочитаната GID интеграция първо не е factory BC tab.
+GID интеграцията вече не е първи фокус.
+
+Предпочитаната future GID интеграция не е factory BC tab.
 
 Реалистичната цел е GID overlay, подобно като идея на проекти като EHU32:
 
@@ -77,6 +89,7 @@ Mockups:
 ## Документация
 
 - [Режими](docs/modes-bg.md)
+- [Bluetooth phone app MVP](docs/ble-phone-app-bg.md)
 - [Guide за начинаещи](docs/beginner-guide-bg.md)
 - [GID / Board Computer integration](docs/gid-bc-integration-bg.md)
 - [Монтажен план и BOM](docs/install-and-bom-bg.md)

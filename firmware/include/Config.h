@@ -9,6 +9,13 @@ enum class LightSelection : uint8_t {
   Fog = 1 << 2,
 };
 
+enum class BrightnessPolicy : uint8_t {
+  FactoryManualLowBeam,
+  ForceDayBrightness,
+  ForceNightDimming,
+  AutoByAmbientSensor,
+};
+
 inline LightSelection operator|(LightSelection lhs, LightSelection rhs) {
   return static_cast<LightSelection>(
       static_cast<uint8_t>(lhs) | static_cast<uint8_t>(rhs));
@@ -37,6 +44,7 @@ struct ModuleConfig {
 
   uint16_t darkThreshold = 1400;
   uint16_t lightThreshold = 1900;
+  BrightnessPolicy brightnessPolicy = BrightnessPolicy::FactoryManualLowBeam;
 
   uint32_t fromStartResetAfterMs = 5UL * 60UL * 60UL * 1000UL;
 };
