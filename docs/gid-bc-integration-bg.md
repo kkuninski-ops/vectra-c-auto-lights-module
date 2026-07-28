@@ -11,7 +11,7 @@
 Желани функции:
 
 - настройка на Welcome светлини;
-- настройка на ACC светлини;
+- настройка на IGN/ACC светлини;
 - настройка на Goodbye светлини;
 - настройка на времена за Welcome/Goodbye;
 - настройка дали функциите да работят само по тъмно;
@@ -104,7 +104,7 @@ Native добавяне на нов таб в заводския BC списък
   - `Off / Side / Low / Fog`
   - `Dark only: Yes/No`
   - `Time: 5-60s`
-- `ACC`
+- `IGN/ACC`
   - `Off / Side / Low / Fog`
 - `GOODBYE`
   - `Off / Side / Low / Fog`

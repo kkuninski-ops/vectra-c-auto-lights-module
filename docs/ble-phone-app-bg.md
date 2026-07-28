@@ -28,13 +28,14 @@ GID overlay и `From Start` остават като future етап.
 
 - `module_enabled`: on/off;
 - `auto_lights_enabled`: on/off;
-- `acc_lights`: off / sidelights / fog / low beam / safe combination;
 - `drl_lights`: low beam + sidelights;
 - `drl_start_delay_ms`: delay след engine-running;
 - `welcome_enabled`: on/off;
 - `welcome_only_dark`: yes/no;
 - `welcome_lights`: off / sidelights / fog / low beam / safe combination;
 - `welcome_duration_s`: време;
+- `ignition_lights_enabled`: on/off;
+- `ignition_lights`: off / sidelights / fog / low beam / safe combination;
 - `goodbye_enabled`: on/off;
 - `goodbye_only_dark`: yes/no;
 - `goodbye_lights`: off / sidelights / fog / low beam / safe combination;
@@ -120,7 +121,7 @@ DRL
 Lights: Low + Side
 Start delay: 0.5s
 
-ACC
+IGN/ACC
 Lights: Off
 
 Welcome

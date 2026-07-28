@@ -58,7 +58,10 @@ LightCommand AutoLightsController::update(const VehicleState& state) {
 
   if (state.ignitionOn) {
     enterMode(ControllerMode::Acc, state.nowMs);
-    return commandFromSelection(config_.accLights);
+    if (!config_.ignitionLightsEnabled) {
+      return {};
+    }
+    return commandFromSelection(config_.ignitionLights);
   }
 
   enterMode(ControllerMode::Idle, state.nowMs);

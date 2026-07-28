@@ -45,7 +45,7 @@ Concept и firmware scaffold за low-wiring auto lights модул за Opel Ve
 | Mode | Condition | Lights |
 |---|---|---|
 | Welcome | unlock without key | configurable: off / sidelights / low beam / fog / safe combinations |
-| ACC | ignition on, engine not running | configurable, default off или sidelights only |
+| IGN/ACC | ignition on, engine not running | configurable: off / sidelights / low beam / fog / safe combinations, default off |
 | DRL | engine running | low beam xenon + front/rear sidelights |
 | Goodbye | engine stops | configurable: off / sidelights / low beam / fog / safe combinations |
 

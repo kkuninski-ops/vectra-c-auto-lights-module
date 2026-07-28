@@ -40,6 +40,22 @@ void testNoLowBeamOnIgnitionOnlyByDefault() {
   assert(controller.mode() == ControllerMode::Acc);
 }
 
+void testConfigurableIgnitionLights() {
+  ModuleConfig config;
+  config.ignitionLights = LightSelection::Sidelights;
+  AutoLightsController controller(config);
+
+  VehicleState state = baseState(100);
+  state.ignitionOn = true;
+  state.engineRunning = false;
+
+  const LightCommand command = controller.update(state);
+  assert(command.active);
+  assert(command.sidelights);
+  assert(!command.lowBeam);
+  assert(controller.mode() == ControllerMode::Acc);
+}
+
 void testDrlAfterEngineRunningDelay() {
   ModuleConfig config;
   config.drlStartDelayMs = 500;
@@ -136,6 +152,7 @@ void testFromStartTripResetsAfterTimeout() {
 int main() {
   testNoOutputWhenNotAuto();
   testNoLowBeamOnIgnitionOnlyByDefault();
+  testConfigurableIgnitionLights();
   testDrlAfterEngineRunningDelay();
   testWelcomeOnlyDark();
   testFromStartTripKeepsSessionUnderResetTimeout();

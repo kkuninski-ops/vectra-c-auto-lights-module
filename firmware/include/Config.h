@@ -31,7 +31,8 @@ struct ModuleConfig {
   LightSelection welcomeLights = LightSelection::Sidelights;
   uint32_t welcomeDurationMs = 20000;
 
-  LightSelection accLights = LightSelection::Off;
+  bool ignitionLightsEnabled = true;
+  LightSelection ignitionLights = LightSelection::Off;
 
   uint32_t drlStartDelayMs = 500;
   LightSelection drlLights =
