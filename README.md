@@ -97,6 +97,7 @@ Mockups:
 - [PCB и controller план](hardware/pcb-controller-plan-bg.md)
 - [Изводи от repair guide](docs/repair-guide-findings-bg.md)
 - [Чеклист за измерване](hardware/measurement-checklist-bg.md)
+- [Измерване на копчето — стъпка по стъпка](hardware/switch-measurement-worksheet-bg.md)
 - [Бележки за преглед](docs/review-notes-bg.md)
 
 ## Firmware
