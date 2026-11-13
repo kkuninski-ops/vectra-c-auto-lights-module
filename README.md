@@ -10,6 +10,8 @@ Concept и firmware scaffold за low-wiring auto lights модул за Opel Ve
 - MS-CAN да се използва първо за read-only vehicle state и GID overlay;
 - да се избягва директно окабеляване към D1S ballasts и lamp circuits, освен ако измерването не докаже, че няма по-чист вариант.
 
+> **Нов човек по проекта?** Започни от [HANDOFF-bg.md](HANDOFF-bg.md) — изисквания, решения, статус и следваща стъпка.
+
 ## Текущ статус
 
 Това не е готов installable product.
